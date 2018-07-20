@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 /**
  * 学生类

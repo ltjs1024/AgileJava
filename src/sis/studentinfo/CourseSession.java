@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class CourseSession {
+
 
     private String department;
     private String number;
@@ -54,5 +55,10 @@ public class CourseSession {
                 sessionLength * daysInWeek - daysFromFridayToMonday;
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
         return calendar.getTime();
+    }
+
+
+    public ArrayList<Student> getAllStudents() {
+        return students;
     }
 }
