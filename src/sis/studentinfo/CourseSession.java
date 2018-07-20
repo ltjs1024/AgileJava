@@ -6,19 +6,39 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class CourseSession {
-
+    private static int count = 0;
 
     private String department;
     private String number;
     private Date startDate;
     private ArrayList<Student> students = new ArrayList<>();
+    private int numberOfCredits;
 
+    public static CourseSession create(String department,
+                                       String number,
+                                       Date startDate) {
+        incrementCount();
+        return new CourseSession(department, number, startDate);
+    }
 
-    public CourseSession(String department, String number, Date startDate) {
+    private CourseSession(String department, String number, Date startDate) {
         this.department = department;
         this.number = number;
         this.startDate = startDate;
     }
+
+    private static void incrementCount() {
+        count++;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void resetCount() {
+        count = 0;
+    }
+
 
     public String getDepartment() {
         return department;
@@ -33,6 +53,7 @@ public class CourseSession {
     }
 
     public void enroll(Student student) {
+        student.addCredits(numberOfCredits);
         students.add(student);
     }
 
@@ -60,5 +81,9 @@ public class CourseSession {
 
     public ArrayList<Student> getAllStudents() {
         return students;
+    }
+
+    public void setNumberOfCredits(int numberOfCredits) {
+        this.numberOfCredits = numberOfCredits;
     }
 }

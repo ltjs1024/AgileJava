@@ -13,9 +13,9 @@ public class RosterReporterTest {
 
     @Test
     public void testRosterReport() {
-        Date startDate = new DateUtil().createDate(2003, 1, 6);
+        Date startDate = DateUtil.createDate(2003, 1, 6);
         CourseSession session =
-                new CourseSession("ENGL", "101", startDate);
+                CourseSession.create("ENGL", "101", startDate);
         session.enroll(new Student("A"));
         session.enroll(new Student("B"));
 
