@@ -1,10 +1,12 @@
+package studentinfo;
+
 /**
  * 学生类
  */
 public class Student {
-    private String name;
+    private final String name;
 
-    public Student(String name) {
+    public Student(final String name) {
         this.name = name;
     }
 

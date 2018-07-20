@@ -1,11 +1,14 @@
+package chess;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * PawnTest
+ * chess.PawnTest
  */
 public class PawnTest {
+
     @Test
     public void testCreate() {
         final String white = "white";
@@ -18,5 +21,11 @@ public class PawnTest {
         Pawn secondPawn = new Pawn(black);
         String secondPawnColor = secondPawn.getColor();
         assertEquals(black, secondPawnColor);
+    }
+
+    @Test
+    public void testDefaultCreate() {
+        Pawn pawn = new Pawn();
+        assertEquals("white", pawn.getColor());
     }
 }
