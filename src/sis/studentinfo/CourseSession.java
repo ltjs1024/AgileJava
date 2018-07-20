@@ -1,17 +1,14 @@
 package sis.studentinfo;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 public class CourseSession implements Comparable<CourseSession> {
     private static int count = 0;
+    private List<Student> students = new ArrayList<>();
 
     private String department;
     private String number;
     private Date startDate;
-    private ArrayList<Student> students = new ArrayList<>();
     private int numberOfCredits;
 
     public static CourseSession create(String department,
@@ -79,7 +76,7 @@ public class CourseSession implements Comparable<CourseSession> {
     }
 
 
-    public ArrayList<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         return students;
     }
 

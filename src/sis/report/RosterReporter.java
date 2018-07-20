@@ -4,6 +4,7 @@ import sis.studentinfo.CourseSession;
 import sis.studentinfo.Student;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RosterReporter {
     public static final String NEWLINE = System.lineSeparator();
@@ -31,7 +32,7 @@ public class RosterReporter {
     }
 
     private void writeBody(StringBuilder res) {
-        final ArrayList<Student> students = session.getAllStudents();
+        final List<Student> students = session.getAllStudents();
         for (Student student : students) {
             res.append(student.getName());
             res.append(NEWLINE);

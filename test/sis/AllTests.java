@@ -11,11 +11,11 @@ import sis.studentinfo.StudentTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        StudentTest.class,
         CourseSessionTest.class,
-        RosterReporterTest.class,
         DateUtilTest.class,
+        StudentTest.class,
         CourseReportTest.class,
+        RosterReporterTest.class,
 })
 public class AllTests {
 }
