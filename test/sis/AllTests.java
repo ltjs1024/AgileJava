@@ -3,10 +3,10 @@ package sis;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import sis.report.CourseReportTest;
+import sis.report.ReportCardTest;
 import sis.report.RosterReporterTest;
-import sis.studentinfo.CourseSessionTest;
-import sis.studentinfo.DateUtilTest;
-import sis.studentinfo.StudentTest;
+import sis.studentinfo.*;
+import sis.studentinfo.SummerCourseSessionTest;
 
 
 @RunWith(Suite.class)
@@ -16,6 +16,11 @@ import sis.studentinfo.StudentTest;
         StudentTest.class,
         CourseReportTest.class,
         RosterReporterTest.class,
+        ReportCardTest.class,
+        BasicGradingStrategyTest.class,
+        HonorsGradingStrategyTest.class,
+        SummerCourseSessionTest.class
+
 })
 public class AllTests {
 }

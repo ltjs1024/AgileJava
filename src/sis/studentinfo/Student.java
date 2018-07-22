@@ -8,21 +8,36 @@ import java.util.List;
  */
 public class Student {
 
-    private GradingStrategy gradingStrategy = new RegularGradingStrategy();
+    public enum Grade {
+        A(4),
+        B(3),
+        C(2),
+        D(1),
+        F(0);
 
-    public void setGradingStrategy(GradingStrategy strategy) {
-        this.gradingStrategy = strategy;
+        private final int points;
+
+        Grade(int points) {
+            this.points = points;
+        }
+
+        public int getPoints() {
+            return points;
+        }
     }
-
-    enum Grade {A, B, C, D, F,}
 
     public static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
     public static final String IN_STATE = "CO";
+    private GradingStrategy gradingStrategy = new BasicGradingStrategy();
     private List<Grade> grades = new ArrayList<>();
     private String state = "";
     private String name;
     private int credits;
     private double gpa;
+
+    public void setGradingStrategy(GradingStrategy strategy) {
+        this.gradingStrategy = strategy;
+    }
 
     public Student(final String name) {
         this.name = name;
