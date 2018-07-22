@@ -14,13 +14,26 @@ public class StudentTest {
     @Test
     public void testCreate() {
         final String firstStudentName = "Jane Doe";
-        Student student = new Student("Jane Doe");
-        assertEquals(firstStudentName, student.getName());
+        Student firstStudent = new Student(firstStudentName);
+        assertEquals(firstStudentName, firstStudent.getName());
+        assertEquals("Jane", firstStudent.getFirstName());
+        assertEquals("Doe", firstStudent.getLastName());
+        assertEquals("", firstStudent.getMiddleName());
 
-        Student secondStudent = new Student("Joe Blow");
-        assertEquals("Joe Blow", secondStudent.getName());
+        final String secondStudentName = "Blow";
+        Student secondStudent = new Student(secondStudentName);
+        assertEquals("Blow", secondStudent.getName());
+        assertEquals("", secondStudent.getFirstName());
+        assertEquals("Blow", secondStudent.getLastName());
+        assertEquals("", secondStudent.getMiddleName());
 
-        assertEquals(firstStudentName, student.getName());
+        final String thirdStudentName = "Raymond Douglas Davies";
+        Student thirdStudent = new Student(thirdStudentName);
+        assertEquals(thirdStudentName, thirdStudent.getName());
+        assertEquals("Raymond", thirdStudent.getFirstName());
+        assertEquals("Douglas", thirdStudent.getMiddleName());
+        assertEquals("Davies", thirdStudent.getLastName());
+
     }
 
 

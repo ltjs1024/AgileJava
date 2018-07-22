@@ -1,12 +1,14 @@
 package sis.studentinfo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * 学生类
  */
 public class Student {
+
 
     public enum Grade {
         A(4),
@@ -39,13 +41,61 @@ public class Student {
         this.gradingStrategy = strategy;
     }
 
-    public Student(final String name) {
-        this.name = name;
+    public Student(final String fullName) {
+        this.name = fullName;
+        credits = 0;
+        List<String> nameParts = split(fullName);
+        setName(nameParts);
     }
+
+    private List<String> split(String fullName) {
+        String[] split = fullName.split(" ");
+        List<String> results = new ArrayList<>();
+        for (String name : split) {
+            results.add(name);
+        }
+        return results;
+    }
+
+    private void setName(List<String> nameParts) {
+        this.lastName = removeLast(nameParts);
+        String name = removeLast(nameParts);
+        if (nameParts.isEmpty()) {
+            this.firstName = name;
+        } else {
+            this.middleName = name;
+            this.firstName = removeLast(nameParts);
+        }
+    }
+
+    private String removeLast(List<String> list) {
+        if (list.isEmpty()) {
+            return "";
+        }
+        return list.remove(list.size() - 1);
+    }
+
 
     public String getName() {
         return name;
     }
+
+    private String firstName = "";
+    private String middleName = "";
+    private String lastName;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
 
     public boolean isFullTime() {
         return credits >= CREDITS_REQUIRED_FOR_FULL_TIME;
