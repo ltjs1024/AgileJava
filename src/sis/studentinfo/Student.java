@@ -1,8 +1,8 @@
 package sis.studentinfo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * 学生类
@@ -10,26 +10,13 @@ import java.util.List;
 public class Student {
 
 
-    public enum Grade {
-        A(4),
-        B(3),
-        C(2),
-        D(1),
-        F(0);
-
-        private final int points;
-
-        Grade(int points) {
-            this.points = points;
-        }
-
-        public int getPoints() {
-            return points;
-        }
-    }
-
+    public static final String TOO_MANY_NAME_PARTS_MSG =
+            "Student name '%s' contains more than %d parts";
+    public static final int MAX_NAME_PARTS = 3;
     public static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
     public static final String IN_STATE = "CO";
+    public static Logger logger = Logger.getLogger(Student.class.getName());
+
     private GradingStrategy gradingStrategy = new BasicGradingStrategy();
     private List<Grade> grades = new ArrayList<>();
     private String state = "";
@@ -45,7 +32,18 @@ public class Student {
         this.name = fullName;
         credits = 0;
         List<String> nameParts = split(fullName);
+        if (nameParts.size() > MAX_NAME_PARTS) {
+            String message = String.format(TOO_MANY_NAME_PARTS_MSG,
+                    fullName, MAX_NAME_PARTS);
+            Student.logger.info(message);
+            throw new StudentNameFormatExcption(message);
+        }
         setName(nameParts);
+    }
+
+    private void log(String message) {
+        Logger logger = Logger.getLogger(getClass().getName());
+        logger.info(message);
     }
 
     private List<String> split(String fullName) {
@@ -133,5 +131,21 @@ public class Student {
         grades.add(grade);
     }
 
+    public enum Grade {
+        A(4),
+        B(3),
+        C(2),
+        D(1),
+        F(0);
 
+        private final int points;
+
+        Grade(int points) {
+            this.points = points;
+        }
+
+        public int getPoints() {
+            return points;
+        }
+    }
 }

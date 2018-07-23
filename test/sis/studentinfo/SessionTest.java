@@ -3,10 +3,10 @@ package sis.studentinfo;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.MalformedURLException;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public abstract class SessionTest {
     private static final int CREDITS = 3;
@@ -78,5 +78,23 @@ public abstract class SessionTest {
         return Session;
     }
 
+    @Test
+    public void testSessionUrl() throws SessionException {
+        final String url = "http://course.langrsoft.com/cmsc300";
+        session.setUrl(url);
+        assertEquals(url, session.getUrl().toString());
+    }
+
+    @Test
+    public void testInvalidSessionUrl() {
+        final String url = "httsp://course.langrsoft.com/cmsc300";
+        try {
+            session.setUrl(url);
+            fail("expected exception due to invalid protocol in URL");
+        } catch (SessionException expectedException) {
+            Throwable cause = expectedException.getCause();
+            assertEquals(MalformedURLException.class, cause.getClass());
+        }
+    }
 
 }

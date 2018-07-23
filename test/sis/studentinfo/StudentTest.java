@@ -2,6 +2,8 @@ package sis.studentinfo;
 
 import org.junit.Test;
 
+import java.util.logging.Handler;
+
 import static org.junit.Assert.*;
 
 /**
@@ -34,6 +36,29 @@ public class StudentTest {
         assertEquals("Douglas", thirdStudent.getMiddleName());
         assertEquals("Davies", thirdStudent.getLastName());
 
+    }
+
+    @Test
+    public void testBadlyFormattedName() {
+        Handler handler = new TestHandler();
+        Student.logger.addHandler(handler);
+
+        final String studentName = "a b c d";
+        try {
+            new Student(studentName);
+            fail("expected exception from 4-part name");
+        } catch (StudentNameFormatExcption expectedException) {
+            String message = String.format(Student.TOO_MANY_NAME_PARTS_MSG,
+                    studentName, Student.MAX_NAME_PARTS);
+            assertEquals(message, expectedException.getMessage());
+            assertTrue(wasLogged(message, ((TestHandler) handler).getMessage()));
+
+        }
+    }
+
+
+    private boolean wasLogged(String message, String handler) {
+        return message.equals(handler);
     }
 
 
