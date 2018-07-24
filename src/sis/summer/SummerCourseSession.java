@@ -1,5 +1,6 @@
 package sis.summer;
 
+import sis.studentinfo.Course;
 import sis.studentinfo.CourseSession;
 import sis.studentinfo.Session;
 
@@ -7,17 +8,15 @@ import java.util.Date;
 
 public class SummerCourseSession extends Session {
 
-    private SummerCourseSession(String department,
-                                String number,
+    private SummerCourseSession(Course course,
                                 Date startDate) {
-        super(department, number, startDate);
+        super(course, startDate);
     }
 
     public static Session create(
-            String department,
-            String number,
+           Course course,
             Date startDate) {
-        return new SummerCourseSession(department, number, startDate);
+        return new SummerCourseSession(course, startDate);
     }
 
     @Override

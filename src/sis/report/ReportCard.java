@@ -20,7 +20,7 @@ public class ReportCard {
         return getMessages().get(grade);
     }
 
-    private Map<Student.Grade, String> getMessages() {
+    public Map<Student.Grade, String> getMessages() {
         if (messages == null) {
             loadMessage();
         }
@@ -28,11 +28,13 @@ public class ReportCard {
     }
 
     private void loadMessage() {
-        messages = new EnumMap<Student.Grade, String>(Student.Grade.class);
+        messages = new EnumMap<>(Student.Grade.class);
         messages.put(Student.Grade.A, A_MESSAGE);
         messages.put(Student.Grade.B, B_MESSAGE);
         messages.put(Student.Grade.C, C_MESSAGE);
         messages.put(Student.Grade.D, D_MESSAGE);
         messages.put(Student.Grade.F, F_MESSAGE);
     }
+
+
 }

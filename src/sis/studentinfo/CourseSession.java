@@ -1,21 +1,17 @@
 package sis.studentinfo;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 public class CourseSession extends Session {
     private static int count = 0;
 
-    public static CourseSession create(String department,
-                                       String number,
+    public static CourseSession create(Course course,
                                        Date startDate) {
-        return new CourseSession(department, number, startDate);
+        return new CourseSession(course, startDate);
     }
 
-    protected CourseSession(String department, String number, Date startDate) {
-        super(department, number, startDate);
+    protected CourseSession(Course course, Date startDate) {
+        super(course, startDate);
         CourseSession.incrementCount();
     }
 

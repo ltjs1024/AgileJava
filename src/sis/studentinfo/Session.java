@@ -5,17 +5,15 @@ import java.net.URL;
 import java.util.*;
 
 public abstract class Session implements Comparable<Session> {
+    private final Course course;
     private List<Student> students = new ArrayList<>();
-    private String department;
-    private String number;
     private Date startDate;
     private int numberOfCredits;
     private URL url;
 
-    protected Session(String department, String number, Date startDate) {
-        this.department = department;
-        this.number = number;
+    protected Session(Course course, Date startDate) {
         this.startDate = startDate;
+        this.course = course;
     }
 
     @Override
@@ -28,11 +26,11 @@ public abstract class Session implements Comparable<Session> {
     }
 
     public String getDepartment() {
-        return department;
+        return course.getDepartment();
     }
 
     public String getNumber() {
-        return number;
+        return course.getNumber();
     }
 
     public int getNumberOfStudents() {

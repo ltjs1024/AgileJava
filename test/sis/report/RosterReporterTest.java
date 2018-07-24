@@ -1,6 +1,7 @@
 package sis.report;
 
 import org.junit.Test;
+import sis.studentinfo.Course;
 import sis.studentinfo.CourseSession;
 import sis.studentinfo.DateUtil;
 import sis.studentinfo.Student;
@@ -15,7 +16,7 @@ public class RosterReporterTest {
     public void testRosterReport() {
         Date startDate = DateUtil.createDate(2003, 1, 6);
         CourseSession session =
-                CourseSession.create("ENGL", "101", startDate);
+                CourseSession.create(new Course("ENGL", "101"), startDate);
         session.enroll(new Student("A"));
         session.enroll(new Student("B"));
 
@@ -26,9 +27,6 @@ public class RosterReporterTest {
                 + RosterReporter.ROSTER_REPORT_FOOTER + "2"
                 + RosterReporter.NEWLINE, rosterReport);
     }
-
-
-
 
 
 }

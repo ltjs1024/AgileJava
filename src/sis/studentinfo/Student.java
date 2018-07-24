@@ -23,6 +23,7 @@ public class Student {
     private String name;
     private int credits;
     private double gpa;
+    private String id;
 
     public void setGradingStrategy(GradingStrategy strategy) {
         this.gradingStrategy = strategy;
@@ -129,6 +130,14 @@ public class Student {
 
     public void addGrade(Grade grade) {
         grades.add(grade);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public enum Grade {
